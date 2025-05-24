@@ -59,25 +59,25 @@ service:
 
 # In charts/retail-app-chart/values.yaml
 # In charts/retail-app-chart/values.yaml
+
 ingress:
   enabled: true
   className: alb # This tells K8s to use the AWS Load Balancer Controller
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing # Creates an internet-facing ALB
-    alb.ingress.kubernetes.io/target-type: ip        # Targets pods directly by IP
+    alb.ingress.kubernetes.io/target-type: ip         # Targets pods directly by IP
     alb.ingress.kubernetes.io/group.name: retail-app-alb-group # Group multiple ingresses under one ALB
     alb.ingress.kubernetes.io/load-balancer-name: retail-app-alb # Optional: custom ALB name
     # Uncomment and configure if you want HTTPS:
     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-south-1:909688465000:certificate/YOUR_ACM_CERT_ID"
     # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-Extd-2023-08
-  # REMOVE THE ENTIRE 'hosts' SECTION FROM HERE
-  # hosts:
-  #   - host: retail.yourdomain.com
-  #     paths:
-  #       - path: /
-  #         pathType: Prefix
+  
+  # === ADD THESE TWO LINES DIRECTLY HERE ===
+  path: /
+  pathType: Prefix 
+  # =========================================
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
