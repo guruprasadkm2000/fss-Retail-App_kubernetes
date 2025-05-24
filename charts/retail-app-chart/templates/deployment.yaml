@@ -46,17 +46,11 @@ spec:
               protocol: TCP
           {{- if .Values.env }}
           env:
-            - name: MONGODB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-uri-secret
-                  key: MONGODB_URI
-            {{- if .Values.env }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
-            {{- end }}
+          {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
