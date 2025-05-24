@@ -13,6 +13,15 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0.0"
 
+# >>> ADD THIS NEW 'env' SECTION HERE <<<
+env:
+  MONGODB_URI: "mongodb://localhost:27017/myDatabase" # <<< IMPORTANT: REPLACE THIS with your actual MongoDB URI
+  SESSION_SECRET: "1234" # <<< IMPORTANT: REPLACE THIS with a long, random string
+  # Optional: uncomment and fill if you need email functionality to work on startup
+  # EMAIL_USER: "your_email@gmail.com"
+  # EMAIL_PASS: "your_email_app_password" # Use an app password for Gmail!
+# >>> END OF NEW 'env' SECTION <<<
+
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
