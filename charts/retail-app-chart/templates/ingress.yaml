@@ -1,7 +1,8 @@
 # In charts/retail-app-chart/templates/ingress.yaml
 
 {{- if .Values.ingress.enabled -}}
-apiVersion: networking.k8s.io/v1
+
+apiVersion: networking.k8s.io/v1 # <-- THIS LINE MUST HAVE A BLANK LINE ABOVE IT
 kind: Ingress
 metadata:
   name: {{ include "retail-app-chart.fullname" . }}
@@ -16,8 +17,8 @@ spec:
   rules:
     - http:
         paths:
-          - path: {{ .Values.ingress.path | quote }} # CORRECTED: Removed [0].path
-            pathType: {{ .Values.ingress.pathType }} # CORRECTED: Removed [0].pathType
+          - path: {{ .Values.ingress.path | quote }}
+            pathType: {{ .Values.ingress.pathType }}
             backend:
               service:
                 name: {{ include "retail-app-chart.fullname" . }}
